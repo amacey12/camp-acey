@@ -1,0 +1,1265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Welcome to Camp Acey | Jenny's Bachelorette Weekend</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --pine: #1f3b32;
+      --pine-light: #2d5243;
+      --cream: #faf5f0;
+      --snow: #f3f7fb;
+      --accent: #c35b4c;
+      --gold: #d9a441;
+      --text: #1f2528;
+      --muted: #6b7a86;
+      --card-radius: 18px;
+      --shadow-soft: 0 16px 30px rgba(0,0,0,0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Nunito", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: linear-gradient(to bottom, #0f2027, #203a43, #2c5364);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    .page-wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 24px 18px 60px;
+    }
+
+    .glass-card {
+      background: rgba(250, 245, 240, 0.96);
+      border-radius: 26px;
+      box-shadow: var(--shadow-soft);
+      padding: 24px 20px 32px;
+      border: 1px solid rgba(255,255,255,0.72);
+      backdrop-filter: blur(12px);
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .camp-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: linear-gradient(120deg, #214438, #2d5b4a);
+      color: #fdfbf7;
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .camp-badge span.emoji {
+      font-size: 1.1rem;
+    }
+
+    .hero-title {
+      font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+      font-size: clamp(2.3rem, 3.1vw, 3rem);
+      color: var(--pine);
+      line-height: 1.05;
+      letter-spacing: 0.02em;
+    }
+
+    .hero-sub {
+      font-size: 0.96rem;
+      color: var(--muted);
+      margin-top: 6px;
+    }
+
+    .hero-meta {
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: var(--pine-light);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .countdown-card {
+      margin-top: 12px;
+      display: inline-flex;
+      flex-direction: column;
+      gap: 6px;
+      padding: 9px 12px;
+      border-radius: 14px;
+      background: rgba(31, 59, 50, 0.06);
+      border: 1px solid rgba(31, 59, 50, 0.12);
+    }
+
+    .countdown-label {
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--pine-light);
+      font-weight: 700;
+    }
+
+    .countdown-values {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 2px;
+    }
+
+    .count-box {
+      min-width: 58px;
+      padding: 4px 6px;
+      border-radius: 10px;
+      background: #ffffff;
+      border: 1px solid rgba(31,59,50,0.08);
+      text-align: center;
+    }
+
+    .count-box span {
+      display: block;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--pine);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .count-box small {
+      display: block;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-top: 1px;
+    }
+
+    .countdown-note {
+      font-size: 0.76rem;
+      color: var(--muted);
+    }
+
+    @media (max-width: 520px) {
+      .countdown-card {
+        width: 100%;
+      }
+
+      .countdown-values {
+        justify-content: space-between;
+      }
+    }
+
+    .hero-meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.9);
+      border: 1px solid rgba(0,0,0,0.04);
+    }
+
+    .hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .btn {
+      border: none;
+      cursor: pointer;
+      border-radius: 999px;
+      padding: 9px 18px;
+      font-size: 0.92rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      transition: transform 0.1s ease, box-shadow 0.1s ease, background 0.15s ease;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), #e27b66);
+      color: #fff7f3;
+      box-shadow: 0 10px 20px rgba(195, 91, 76, 0.35);
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.95);
+      border: 1px solid rgba(31,59,50,0.12);
+      color: var(--pine);
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 14px 26px rgba(0,0,0,0.12);
+    }
+
+    .btn span.icon {
+      font-size: 1rem;
+    }
+
+    .hero-illustration {
+      position: relative;
+      flex: 1;
+      min-height: 190px;
+      border-radius: 22px;
+      overflow: hidden;
+      background: radial-gradient(circle at top, #fdfdfd 0, #f3f7fb 32%, #dce7f5 100%);
+      border: 1px solid rgba(255,255,255,0.9);
+    }
+
+    .hero-inner {
+      position: absolute;
+      inset: 0;
+      padding: 18px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .sky {
+      position: relative;
+      height: 46%;
+      overflow: hidden;
+    }
+
+    .moon {
+      position: absolute;
+      right: 18px;
+      top: 10px;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, #fff8de 0, #f0d48a 42%, #f1c56d 76%);
+      box-shadow: 0 0 16px rgba(255,255,255,0.65);
+    }
+
+    .snow-dot {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.9);
+      animation: snow 9s linear infinite;
+    }
+
+    .snow-dot:nth-child(1) { width: 4px; height: 4px; left: 6%; top: 12%; animation-delay: 0s; }
+    .snow-dot:nth-child(2) { width: 5px; height: 5px; left: 24%; top: 3%; animation-delay: 1.5s; }
+    .snow-dot:nth-child(3) { width: 3px; height: 3px; left: 53%; top: 18%; animation-delay: 3s; }
+    .snow-dot:nth-child(4) { width: 4px; height: 4px; left: 77%; top: 6%; animation-delay: 4.5s; }
+    .snow-dot:nth-child(5) { width: 3px; height: 3px; left: 9%; top: 32%; animation-delay: 6s; }
+
+    @keyframes snow {
+      0% { transform: translateY(0); opacity: 1; }
+      100% { transform: translateY(70px); opacity: 0; }
+    }
+
+    .tree-line {
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      right: 0;
+      height: 60px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      gap: 18px;
+    }
+
+    .tree {
+      width: 0;
+      height: 0;
+      border-left: 16px solid transparent;
+      border-right: 16px solid transparent;
+      border-bottom: 34px solid #294535;
+      position: relative;
+    }
+
+    .tree::before,
+    .tree::after {
+      content: "";
+      position: absolute;
+      left: -14px;
+      width: 0;
+      height: 0;
+      border-left: 14px solid transparent;
+      border-right: 14px solid transparent;
+    }
+
+    .tree::before {
+      bottom: 4px;
+      border-bottom: 26px solid #294535;
+    }
+
+    .tree::after {
+      bottom: 11px;
+      border-bottom: 20px solid #294535;
+    }
+
+    .cabin {
+      position: absolute;
+      bottom: 4px;
+      left: 16px;
+      width: 68px;
+      height: 40px;
+      background: #754531;
+      border-radius: 6px;
+      box-shadow: 0 8px 10px rgba(0,0,0,0.2);
+    }
+
+    .cabin::before {
+      content: "";
+      position: absolute;
+      left: -10px;
+      right: -10px;
+      top: -18px;
+      border-left: 44px solid transparent;
+      border-right: 44px solid transparent;
+      border-bottom: 22px solid #42251b;
+    }
+
+    .cabin-door {
+      position: absolute;
+      bottom: 0;
+      left: 9px;
+      width: 18px;
+      height: 24px;
+      background: #3d251c;
+      border-radius: 4px 4px 0 0;
+    }
+
+    .cabin-window {
+      position: absolute;
+      right: 10px;
+      bottom: 12px;
+      width: 18px;
+      height: 14px;
+      background: #ffe3a6;
+      border-radius: 4px;
+      box-shadow: 0 0 10px rgba(255,227,166,0.8);
+    }
+
+    .campfire {
+      position: absolute;
+      bottom: 2px;
+      right: 22px;
+      width: 22px;
+      height: 18px;
+    }
+
+    .flame {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: 5px;
+      width: 14px;
+      height: 18px;
+      border-radius: 50% 50% 50% 50%;
+      background: radial-gradient(circle at 30% 20%, #ffe3a8 0, #ffb35d 45%, #e85b3b 100%);
+      animation: flicker 1.4s ease-in-out infinite;
+    }
+
+    .logs {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 20px;
+      height: 8px;
+    }
+
+    .log {
+      position: absolute;
+      width: 16px;
+      height: 4px;
+      background: #5b3724;
+      border-radius: 999px;
+      top: 2px;
+    }
+
+    .log:first-child { transform: rotate(20deg); left: 0; }
+    .log:last-child { transform: rotate(-20deg); right: 0; }
+
+    @keyframes flicker {
+      0%, 100% { transform: translateX(-50%) scale(1); opacity: 0.96; }
+      50% { transform: translateX(-50%) scale(1.1); opacity: 1; }
+    }
+
+    .tagline {
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #4c6477;
+      margin-bottom: 4px;
+    }
+
+    .card-footer-text {
+      font-size: 0.8rem;
+      color: #4c6477;
+    }
+
+    main {
+      margin-top: 24px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.1fr);
+      gap: 20px;
+    }
+
+    section {
+      background: var(--snow);
+      border-radius: var(--card-radius);
+      padding: 18px 16px 20px;
+      border: 1px solid rgba(31,59,50,0.06);
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 6px;
+      gap: 10px;
+    }
+
+    .section-title {
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--pine);
+    }
+
+    .section-sub {
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    .day-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .day-card {
+      padding: 10px 12px;
+      border-radius: 12px;
+      background: #ffffff;
+      border: 1px solid rgba(31,59,50,0.06);
+    }
+
+    .day-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 4px;
+    }
+
+    .day-name {
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--pine-light);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .day-meta {
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    .timeline {
+      margin-top: 4px;
+      padding-left: 0;
+      list-style: none;
+    }
+
+    .timeline li {
+      display: grid;
+      grid-template-columns: 65px minmax(0, 1fr);
+      gap: 8px;
+      font-size: 0.86rem;
+      padding: 3px 0;
+    }
+
+    .timeline-time {
+      font-weight: 600;
+      color: var(--pine);
+    }
+
+    .timeline-text span {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-size: 0.7rem;
+      background: rgba(217,164,65,0.12);
+      color: var(--gold);
+      margin-top: 2px;
+    }
+
+    .note {
+      margin-top: 8px;
+      font-size: 0.78rem;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    .budget-summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+      margin-top: 6px;
+      padding: 8px 10px;
+      border-radius: 12px;
+      background: #fff9ef;
+      border: 1px dashed rgba(217,164,65,0.5);
+      font-size: 0.86rem;
+    }
+
+    .budget-summary span.label {
+      font-weight: 700;
+      color: var(--gold);
+    }
+
+    .budget-grid {
+      margin-top: 10px;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(31,59,50,0.06);
+      background: #ffffff;
+    }
+
+    .budget-row {
+      display: grid;
+      grid-template-columns: 1.4fr 0.8fr 0.8fr;
+      font-size: 0.84rem;
+      padding: 8px 10px;
+      border-bottom: 1px solid rgba(31,59,50,0.04);
+      align-items: center;
+    }
+
+    .budget-row.header {
+      background: #f5f7fb;
+      font-weight: 700;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+    }
+
+    .budget-row span.amount {
+      font-variant-numeric: tabular-nums;
+    }
+
+    .budget-row:last-child {
+      border-bottom: none;
+    }
+
+    .budget-row.total {
+      background: #faf3e4;
+      font-weight: 700;
+    }
+
+    .budget-hint {
+      margin-top: 7px;
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    form {
+      margin-top: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .field-group {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--pine-light);
+    }
+
+    input, select, textarea {
+      padding: 7px 9px;
+      border-radius: 10px;
+      border: 1px solid rgba(31,59,50,0.16);
+      font-family: inherit;
+      font-size: 0.9rem;
+      outline: none;
+      background: #ffffff;
+      transition: border 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px rgba(195,91,76,0.36);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 60px;
+    }
+
+    .form-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-top: 4px;
+      font-size: 0.78rem;
+      color: var(--muted);
+      flex-wrap: wrap;
+    }
+
+    .contrib-intro {
+      font-size: 0.84rem;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    .contrib-list {
+      margin-top: 6px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .contrib-item {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      gap: 10px;
+      align-items: center;
+      background: #ffffff;
+      border-radius: 10px;
+      padding: 6px 8px;
+      border: 1px solid rgba(31,59,50,0.06);
+      font-size: 0.84rem;
+    }
+
+    .contrib-item span.label-text {
+      font-weight: 600;
+      color: var(--pine);
+    }
+
+    .contrib-item small {
+      display: block;
+      font-size: 0.74rem;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    footer {
+      margin-top: 18px;
+      font-size: 0.76rem;
+      color: rgba(255,255,255,0.75);
+      text-align: center;
+    }
+
+    footer span {
+      opacity: 0.9;
+    }
+
+    @media (max-width: 860px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .hero-illustration {
+        width: 100%;
+      }
+
+      main {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 520px) {
+      .glass-card {
+        padding: 18px 14px 24px;
+      }
+
+      .budget-row {
+        grid-template-columns: 1.4fr 0.8fr 0.7fr;
+        font-size: 0.8rem;
+      }
+
+      .hero-cta {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .hero-meta {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .contrib-item {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-wrap">
+    <div class="glass-card">
+      <header>
+        <!-- Banner Image -->
+        <div style="width:100%; margin-bottom:20px; text-align:center;">
+  <img src="Floral Wreath.png" style="width:100%; max-width:900px; border-radius:20px; box-shadow:0 8px 20px rgba(0,0,0,0.15);" />
+</div>
+        <div>
+          
+          <h1 class="hero-title">Bachelorette Weekend</h1>
+          <p class="hero-sub">
+            A cozy winter escape in Lake Placid with cabins, cocoa, and just the right amount of chaos.
+          </p>
+          <div class="hero-meta">
+  <div class="countdown-card" id="camp-countdown">
+    <div class="countdown-label">Countdown to Camp Acey</div>
+    <div class="countdown-values">
+      <div class="count-box">
+        <span id="cd-days">--</span>
+        <small>Days</small>
+      </div>
+      <div class="count-box">
+        <span id="cd-hours">--</span>
+        <small>Hours</small>
+      </div>
+      <div class="count-box">
+        <span id="cd-mins">--</span>
+        <small>Minutes</small>
+      </div>
+      <div class="count-box">
+        <span id="cd-secs">--</span>
+        <small>Seconds</small>
+      </div>
+    </div>
+    <div class="countdown-note" id="cd-note"></div>
+  </div>
+
+            <span><strong>Location:</strong> <em>Lake Placid, NY</em></span>
+            <span><strong>Dates:</strong> <em>January 30 – February 1, 2026</em></span>
+            <span><strong>Honoring:</strong> <em>The Future Mrs. Acey</em></span>
+          </div>
+          <div class="hero-cta">
+            <a href="#signup" class="btn btn-primary">
+              <span class="icon">✨</span>
+              Claim what you're bringing
+            </a>
+            <a href="#itinerary" class="btn btn-secondary">
+              <span class="icon">📜</span>
+              View weekend plan
+            </a>
+          </div>
+        </div>
+      </header>
+
+      <main>
+        <!-- Itinerary -->
+        <section id="itinerary">
+          <div class="section-header">
+            <h2 class="section-title">Weekend Itinerary</h2>
+            <p class="section-sub">Subject to change if we get snowed in (manifesting ❄️)</p>
+          </div>
+          <div class="day-list">
+            <div class="day-card">
+              <div class="day-header">
+                <div class="day-name">Friday • Arrival &amp; Campfire Night</div>
+                <div class="day-meta">Travel + Settling In</div>
+              </div>
+              <ul class="timeline">
+                <li>
+                  <div class="timeline-time">4:00 PM</div>
+                  <div class="timeline-text">Cabin check-in &amp; hot cocoa bar</div>
+                </li>
+                <li>
+                  <div class="timeline-time">6:30 PM</div>
+                  <div class="timeline-text">Welcome dinner &amp; Camp Acey introductions <span>Dress: Cozy sweaters</span></div>
+                </li>
+                <li>
+                  <div class="timeline-time">8:30 PM</div>
+                  <div class="timeline-text">Fireside games, toasts &amp; s’mores</div>
+                </li>
+                <li>
+                  <div class="timeline-time">10:30 PM</div>
+                  <div class="timeline-text">Pajama party</div>
+                </li>
+              </ul>
+            </div>
+
+            <div class="day-card">
+              <div class="day-header">
+                <div class="day-name">Saturday • Full Camp Acey</div>
+                <div class="day-meta">Theme Day: Winter Cabin-Core</div>
+              </div>
+              <ul class="timeline">
+                <li>
+                  <div class="timeline-time">9:00 AM</div>
+                  <div class="timeline-text">Pancake breakfast &amp; coffee bar</div>
+                </li>
+                <li>
+                  <div class="timeline-time">11:00 AM</div>
+                  <div class="timeline-text">Outdoor activity (snowshoeing / skating / tubing)</div>
+                </li>
+                <li>
+                  <div class="timeline-time">2:00 PM</div>
+                  <div class="timeline-text">Free time: naps, board games, crafts</div>
+                </li>
+                <li>
+                  <div class="timeline-time">5:30 PM</div>
+                  <div class="timeline-text">Get ready: Glam camp photos &amp; cocktails <span>Dress: Flannel &amp; faux fur</span></div>
+                </li>
+                <li>
+                  <div class="timeline-time">7:30 PM</div>
+                  <div class="timeline-text">Bachelorette dinner &amp; nighttime festivities</div>
+                </li>
+              </ul>
+            </div>
+
+            <div class="day-card">
+              <div class="day-header">
+                <div class="day-name">Sunday • Cozy Goodbyes</div>
+                <div class="day-meta">Travel Day</div>
+              </div>
+              <ul class="timeline">
+                <li>
+                  <div class="timeline-time">9:30 AM</div>
+                  <div class="timeline-text">Farewell brunch &amp; mimosa bar</div>
+                </li>
+                <li>
+                  <div class="timeline-time">11:00 AM</div>
+                  <div class="timeline-text">Cabin checkout &amp; goodbyes</div>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <p class="note">
+            ✉️ Final details (packing list, room assignments, carpool info) will be sent closer to the weekend.
+          </p>
+        </section>
+
+                <!-- Budget & Sign Up -->
+        <div>
+          <!-- Budget -->
+          <section id="budget">
+            <div class="section-header">
+              <h2 class="section-title">Budget Breakdown</h2>
+              <p class="section-sub">Estimated per person — we’ll lock this in once RSVPs are in.</p>
+            </div>
+
+            <div class="budget-summary">
+              <div>
+                <span class="label">Estimated Cost:</span>
+                <span id="total-per-person">$325 / person</span>
+              </div>
+              <div>
+                Includes lodging, most meals, plus activities &amp; decor.
+              </div>
+            </div>
+
+            <div class="budget-grid">
+              <div class="budget-row header">
+                <div>Category</div>
+                <div>Estimate</div>
+                <div>Per Person*</div>
+              </div>
+              <div class="budget-row">
+                <div>Cabin rental (2 nights)</div>
+                <div class="amount" data-total="2400">$2,400</div>
+                <div class="amount">≈ $160</div>
+              </div>
+              <div class="budget-row">
+                <div>Food &amp; drinks</div>
+                <div class="amount" data-total="1200">$1,200</div>
+                <div class="amount">≈ $80</div>
+              </div>
+              <div class="budget-row">
+                <div>Activities (snow fun, games, crafts)</div>
+                <div class="amount" data-total="600">$600</div>
+                <div class="amount">≈ $40</div>
+              </div>
+              <div class="budget-row">
+                <div>Decor, favors &amp; bride surprises</div>
+                <div class="amount" data-total="450">$450</div>
+                <div class="amount">≈ $30</div>
+              </div>
+              <div class="budget-row total">
+                <div>Total (assuming 10 campers)</div>
+                <div class="amount">$4,650</div>
+                <div class="amount">≈ $325</div>
+              </div>
+            </div>
+
+            <p class="budget-hint">
+              *Numbers assume <strong>10 people</strong>. If we have more or fewer campers, we’ll recalculate and share an updated per-person amount.
+            </p>
+          </section>
+
+          <!-- Contributions Sign-Up -->
+          <section id="signup" style="margin-top: 16px;">
+            <div class="section-header">
+              <h2 class="section-title">Camp Acey Contributions</h2>
+              <p class="section-sub">
+                Claim what you’re bringing so we have the perfect mix of snacks, drinks &amp; cozy cabin goodies.
+              </p>
+            </div>
+
+            <p class="contrib-intro">
+              Please add your name next to 1–3 items you’re willing to bring. Everyone will be able to see this list update,
+              so we all know who’s bringing what up front.
+            </p>
+
+            <form id="camp-form" action="#" method="post" onsubmit="handleFormSubmit(event)">
+              <div class="field-group">
+                <label for="name">Your Name</label>
+                <input id="name" name="name" type="text" placeholder="Camper Name" required />
+              </div>
+
+              <div class="field-group">
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" placeholder="you@example.com" required />
+              </div>
+
+              <div class="field-group">
+                <label>Claim your items</label>
+                <div class="contrib-list">
+                  <!-- Snacks & chips -->
+                  <div class="contrib-item" data-category="Snacks & chips">
+                    <div>
+                      <span class="label-text">Snacks &amp; chips</span>
+                      <small>Think salty, crunchy, munchy.</small>
+                      <div class="contrib-names"></div>
+                    </div>
+                    <input type="text" name="snacks" placeholder="What you’ll bring" />
+                  </div>
+
+                  <!-- Desserts / sweet treats -->
+                  <div class="contrib-item" data-category="Desserts / sweet treats">
+                    <div>
+                      <span class="label-text">Desserts / sweet treats</span>
+                      <small>Cookies, brownies, cupcakes, etc.</small>
+                      <div class="contrib-names"></div>
+                    </div>
+                    <input type="text" name="desserts" placeholder="What you’ll bring" />
+                  </div>
+
+                  <!-- Charcuterie / cheese board -->
+                  <div class="contrib-item" data-category="Charcuterie / cheese board">
+                    <div>
+                      <span class="label-text">Charcuterie / cheese board</span>
+                      <small>Cheese, meats, crackers, jams, etc.</small>
+                      <div class="contrib-names"></div>
+                    </div>
+                    <input type="text" name="charcuterie" placeholder="What you’ll bring" />
+                  </div>
+
+                  <!-- Breakfast & brunch items -->
+                  <div class="contrib-item" data-category="Breakfast & brunch items">
+                    <div>
+                      <span class="label-text">Breakfast &amp; brunch items</span>
+                      <small>Bagels, pastries, egg bake, fruit, etc.</small>
+                      <div class="contrib-names"></div>
+                    </div>
+                    <input type="text" name="breakfast" placeholder="What you’ll bring" />
+                  </div>
+
+                  <!-- Beer/Wine/Liquor -->
+                  <div class="contrib-item" data-category="Beer/Wine/Liquor">
+                    <div>
+                      <span class="label-text">Beer/Wine/Liquor</span>
+                      <small>Beer, wine, spirits, special bottles.</small>
+                      <div class="contrib-names"></div>
+                    </div>
+                    <input type="text" name="alcohol" placeholder="What you’ll bring" />
+                  </div>
+
+                  <!-- NA Beverages / mixers -->
+                  <div class="contrib-item" data-category="NA Beverages / mixers">
+                    <div>
+                      <span class="label-text">NA Beverages / mixers</span>
+                      <small>Seltzers, juices, mocktails, mixers.</small>
+                      <div class="contrib-names"></div>
+                    </div>
+                    <input type="text" name="na" placeholder="What you’ll bring" />
+                  </div>
+
+                  <!-- Coffee & tea station -->
+                  <div class="contrib-item" data-category="Coffee & tea station">
+                    <div>
+                      <span class="label-text">Coffee &amp; tea station</span>
+                      <small>Coffee, filters, creamers, syrups, tea.</small>
+                      <div class="contrib-names"></div>
+                    </div>
+                    <input type="text" name="coffee" placeholder="What you’ll bring" />
+                  </div>
+
+                  <!-- Game/Activity -->
+                  <div class="contrib-item" data-category="Game/Activity">
+                    <div>
+                      <span class="label-text">Game/Activity</span>
+                      <small>Board games, card games, bachelorette games.</small>
+                      <div class="contrib-names"></div>
+                    </div>
+                    <input type="text" name="game" placeholder="What you’ll bring" />
+                  </div>
+
+                  <!-- Decor & ambiance -->
+                  <div class="contrib-item" data-category="Decor & ambiance">
+                    <div>
+                      <span class="label-text">Decor &amp; ambiance</span>
+                      <small>Banners, candles, fairy lights, bride swag.</small>
+                      <div class="contrib-names"></div>
+                    </div>
+                    <input type="text" name="decor" placeholder="What you’ll bring" />
+                  </div>
+
+                  <!-- Other Item -->
+                  <div class="contrib-item" data-category="Other Item">
+                    <div>
+                      <span class="label-text">Other Item</span>
+                      <small>Anything fun or helpful that doesn’t fit above.</small>
+                      <div class="contrib-names"></div>
+                    </div>
+                    <input type="text" name="otherItem" placeholder="What you’ll bring" />
+                  </div>
+                </div>
+              </div>
+
+              <div class="field-group">
+                <label for="diet">Dietary restrictions or allergies</label>
+                <input id="diet" name="diet" type="text" placeholder="Gluten free, vegetarian, nut allergy, etc." />
+              </div>
+
+              <div class="form-footer">
+                <button type="submit" class="btn btn-primary">
+                  <span class="icon">📬</span>
+                  Submit my contributions
+                </button>
+                <div>
+                  This list updates live so everyone can see who’s bringing what.
+                </div>
+              </div>
+            </form>
+          </section>
+        </div> <!-- closes the Budget & Sign Up wrapper div -->
+      </main>
+
+      <footer>
+        <span>Camp Acey • Lake Placid Bachelorette Weekend • "What happens at the cabin stays at the cabin."</span>
+      </footer>
+    </div> <!-- .glass-card -->
+  </div> <!-- .page-wrap -->
+
+  <script>
+  // Your deployed Apps Script Web App URL
+  const API_URL = 'https://script.google.com/macros/s/AKfycbz5xQCKgyL7_b4mPgPYlFQQMbF_iHuuqwnu9gdeCHgHyrVWB3SZSWNCXANWo4APRIiQFg/exec';
+
+  // Map form field names -> category strings (must match your Sheet picklist)
+  const CATEGORY_MAP = {
+    snacks: 'Snacks & chips',
+    desserts: 'Desserts / sweet treats',
+    charcuterie: 'Charcuterie / cheese board',
+    breakfast: 'Breakfast & brunch items',
+    alcohol: 'Beer/Wine/Liquor',
+    na: 'NA Beverages / mixers',
+    coffee: 'Coffee & tea station',
+    game: 'Game/Activity',
+    decor: 'Decor & ambiance',
+    otherItem: 'Other Item'
+  };
+
+  async function fetchContributions() {
+    try {
+      const res = await fetch(API_URL);
+      const data = await res.json();
+      renderContributions(data.items || []);
+    } catch (err) {
+      console.error('Error loading contributions', err);
+    }
+  }
+
+  function renderContributions(items) {
+    // Group rows by category
+    const grouped = {};
+    items.forEach(item => {
+      const cat = item.category;
+      if (!grouped[cat]) grouped[cat] = [];
+      grouped[cat].push(item);
+    });
+
+    // For each card on the page, fill in its "Already bringing" line
+    document.querySelectorAll('.contrib-item').forEach(block => {
+      const cat = block.getAttribute('data-category');
+      const namesDiv = block.querySelector('.contrib-names');
+      if (!namesDiv) return;
+
+      const list = grouped[cat] || [];
+      if (list.length === 0) {
+        namesDiv.textContent = 'No one has claimed this yet.';
+        namesDiv.style.fontSize = '0.78rem';
+        namesDiv.style.color = '#6b7a86';
+      } else {
+        const names = list
+          .map(i => i.name + (i.description ? ` (${i.description})` : ''))
+          .join(', ');
+        namesDiv.textContent = 'Already bringing: ' + names;
+        namesDiv.style.fontSize = '0.78rem';
+        namesDiv.style.color = '#1f3b32';
+      }
+    });
+  }
+
+  async function handleFormSubmit(event) {
+    event.preventDefault();
+
+    const form = event.target;
+    const name = form.name.value.trim();
+    const email = form.email.value.trim(); // currently unused, but available
+
+    if (!name) {
+      alert('Please add your name.');
+      return;
+    }
+
+    // Build items array from non-empty inputs
+    const items = [];
+    Object.keys(CATEGORY_MAP).forEach(fieldName => {
+      const input = form.querySelector(`[name="${fieldName}"]`);
+      if (!input) return;
+      const desc = input.value.trim();
+      if (desc) {
+        items.push({
+          category: CATEGORY_MAP[fieldName],
+          description: desc
+        });
+      }
+    });
+
+    if (items.length === 0) {
+      alert('Please claim at least one item to bring.');
+      return;
+    }
+
+    try {
+      // Send as URL-encoded so it matches the Apps Script doPost handler
+      const body = new URLSearchParams({
+        payload: JSON.stringify({ name, items })
+      });
+
+      const res = await fetch(API_URL, {
+        method: 'POST',
+        body
+      });
+
+      const data = await res.json();
+
+      if (data.status === 'success') {
+        alert('Thanks for claiming your items for Camp Acey! 🏕️');
+        form.reset();
+        fetchContributions(); // refresh visible list
+      } else {
+        console.error(data);
+        alert('There was an issue saving your contributions. Please try again.');
+      }
+    } catch (err) {
+      console.error(err);
+      alert('There was an error connecting to the server. Please try again.');
+    }
+  }
+  const CAMP_START = new Date('2026-01-30T16:00:00'); // adjust time if you want
+
+  function updateCountdown() {
+    const container = document.getElementById('camp-countdown');
+    if (!container) return;
+
+    const now = new Date();
+    let diff = CAMP_START - now;
+
+    const noteEl = document.getElementById('cd-note');
+
+    // If we've passed the start date
+    if (diff <= 0) {
+      if (noteEl) {
+        noteEl.textContent = 'Camp Acey is happening now or has already wrapped! 💍';
+      }
+      // Optional: zero out display
+      ['cd-days','cd-hours','cd-mins','cd-secs'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = '0';
+      });
+      return;
+    }
+
+    const secondsTotal = Math.floor(diff / 1000);
+    const days = Math.floor(secondsTotal / (60 * 60 * 24));
+    const hours = Math.floor((secondsTotal % (60 * 60 * 24)) / (60 * 60));
+    const mins = Math.floor((secondsTotal % (60 * 60)) / 60);
+    const secs = secondsTotal % 60;
+
+    const dEl = document.getElementById('cd-days');
+    const hEl = document.getElementById('cd-hours');
+    const mEl = document.getElementById('cd-mins');
+    const sEl = document.getElementById('cd-secs');
+
+    if (dEl) dEl.textContent = String(days);
+    if (hEl) hEl.textContent = String(hours).padStart(2, '0');
+    if (mEl) mEl.textContent = String(mins).padStart(2, '0');
+    if (sEl) sEl.textContent = String(secs).padStart(2, '0');
+
+    if (noteEl) {
+      if (days <= 3) {
+        noteEl.textContent = 'Pack your bags! Camp Acey is almost here. 🧣🔥';
+      } else {
+        noteEl.textContent = 'Time to plan outfits, snacks, and shenanigans. ✨';
+      }
+    }
+  }
+
+  function startCountdown() {
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  }
+
+  // Load existing contributions on page load
+   document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('camp-form');
+    if (form) {
+      form.addEventListener('submit', handleFormSubmit);
+    }
+    fetchContributions();
+    startCountdown();
+  });
+
+</script>
+
+</body>
+</html>
+
